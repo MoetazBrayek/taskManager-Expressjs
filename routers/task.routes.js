@@ -11,4 +11,3 @@ router.delete("/tasks/:id", deleteTask);
 
 export default router;
 
-//http://localhost:3001/tasks    --> https://landing.develop.rc.aigotsrl-dev.com/api//tasks

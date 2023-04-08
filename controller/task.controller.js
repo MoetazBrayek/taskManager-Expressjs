@@ -1,5 +1,11 @@
 import Task from "../models/task.js";
+import {z} from "zod";
 
+const taskSchema = z.object({
+    name: z.string(),
+    description: z.string(),
+    date: z.string()
+});
 
 // CRUD operations --> Create, Read, Update, Delete
 
@@ -8,7 +14,7 @@ import Task from "../models/task.js";
 // create find findByIdAndUpdate findByIdAndDelete findById
 export const createTask = async (req, res) => {
     try {
-        console.log(req.body);
+        taskSchema.parse(req.body);
         const task = await Task.create(req.body);
         res.status(201).json({task});
     } catch (error) {
