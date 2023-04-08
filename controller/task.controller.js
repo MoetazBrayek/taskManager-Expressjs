@@ -1,4 +1,6 @@
 import Task from "../models/task.js";
+import {getWeather} from "../services/weather.service.js";
+
 import {z} from "zod";
 
 const taskSchema = z.object({
@@ -43,9 +45,19 @@ export const deleteTask = async (req, res) => {
     }
 }
 
-// export all the functions
-export default {
-    createTask,
-    getTasks,
-    deleteTask
+// get all weather
+export const getWeatherTask = async (req, res) => {
+    try {
+        const weather = await getWeather();
+        // return only day and night from weather array of objects
+        const taz = weather.map((item) => {
+            return {
+                day: item.day,
+                night: item.night
+            }
+        })
+        res.status(200).json({taz});
+    } catch (error) {
+        res.status(400).json({error});
+    }
 }

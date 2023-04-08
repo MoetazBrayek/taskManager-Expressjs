@@ -1,4 +1,4 @@
-import {createTask,deleteTask,getTasks}  from "../controller/task.controller.js";
+import {createTask,deleteTask,getTasks,getWeatherTask}  from "../controller/task.controller.js";
 import express from "express";
 
 const router = express.Router();
@@ -8,6 +8,7 @@ const router = express.Router();
 router.get("/tasks", getTasks);
 router.post("/tasks", createTask);
 router.delete("/tasks/:id", deleteTask);
+router.get("/weather", getWeatherTask);
 
 export default router;
 
